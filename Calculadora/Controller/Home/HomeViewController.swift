@@ -34,6 +34,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Constantes
     private let kSeparadorDecimal = Locale.current.decimalSeparator! // , o . segun pais
     private let kMaxLenght = 9 // Tamaño maximo de numero
+    private let kTotal = "total"
     
     private enum operadorType {
         case ninguna, suma, resta, multiplicacion, division, porcentaje
@@ -122,6 +123,8 @@ final class HomeViewController: UIViewController {
         operatorDivision.round()
 
         numberDecimal.setTitle(kSeparadorDecimal, for: .normal)
+        
+        total = UserDefaults.standard.double(forKey: kTotal)
         
         resultado()
     }
@@ -298,6 +301,8 @@ final class HomeViewController: UIViewController {
         operador = .ninguna
         
         selectVisualOperation()
+        
+        UserDefaults.standard.set(total, forKey: kTotal)
         
         print("Total:\(total)")
         
